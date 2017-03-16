@@ -1,0 +1,21 @@
+{
+	"manifest_version": 2,
+	"version": "0.0.0",
+	"name": "Popup Tab",
+	"description": "Convert a tab into a popup and vice versa",
+	"author": "eight",
+	"homepage_url": "https://github.com/eight04/popup-tab",
+	"permissions": [
+		"contextMenus"
+	],
+	"background": {
+		"scripts": [
+			"background.js"
+		]
+	},
+	"applications": {
+		"gecko": {
+			"id": "popup-tab@eight04.blogspot.com"
+		}
+	}
+}
