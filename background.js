@@ -3,45 +3,78 @@ var {windows, contextMenus, tabs} = browser;
 
 var windowList = new Map;
 
-var CONTEXT_ID;
+var MERGE_CONTEXT, POPUP_CONTEXT, TAB_CONTEXT;
 
-// create context menu on tab bar
-contextMenus.create({
-	title: "Popup this tab",
-	contexts: ["tab"],
-	onclick(info, tab) {
-		var windowInfo = {
-			parent: tab.windowId,
-			index: tab.index
-		};
-		// popup tab
-		windows.create({
-			tabId: tab.id,
-			type: "popup"
-		}).then(window => {
-			addWindowInfo(window);
-			Object.assign(windowList.get(window.id), windowInfo);
-		});
-	}
-});
+try {
+	// tab context menu only works on Firefox 53+
+	TAB_CONTEXT = createTabMenu();
+} catch (err) {
+	TAB_CONTEXT = false;
+}
+
+
+function createTabMenu() {
+	// create context menu on tab bar
+	return contextMenus.create({
+		title: "Popup this tab",
+		contexts: ["tab"],
+		onclick(info, tab) {
+			createPopup(tab);
+		}
+	});
+}
+
+function createPopup(tab) {
+	var windowInfo = {
+		parent: tab.windowId,
+		index: tab.index
+	};
+	// popup tab
+	windows.create({
+		tabId: tab.id,
+		type: "popup"
+	}).then(window => {
+		addWindowInfo(window);
+		Object.assign(windowList.get(window.id), windowInfo);
+	});
+}
 
 // handle "Merge popup" ccontext menu, should only show if it is a popup window
 windows.onFocusChanged.addListener(windowId => {
 	var window = windowList.get(windowId);
 	if (!window) return;
 	
-	if (window.type == "popup" && CONTEXT_ID == null) {
-		CONTEXT_ID = createContextMenu();
-	} else if (window.type != "popup" && CONTEXT_ID != null) {
-		contextMenus.remove(CONTEXT_ID);
-		CONTEXT_ID = null;
+	if (window.type == "popup" && MERGE_CONTEXT == null) {
+		MERGE_CONTEXT = createMergeContext();
+	} else if (window.type != "popup" && MERGE_CONTEXT != null) {
+		contextMenus.remove(MERGE_CONTEXT);
+		MERGE_CONTEXT = null;
+	}
+	
+	if (!TAB_CONTEXT) {
+		if (window.type == "normal" && POPUP_CONTEXT == null) {
+			POPUP_CONTEXT = createPopupContext();
+		} else if (window.type != "normal" && POPUP_CONTEXT != null) {
+			contextMenus.remove(POPUP_CONTEXT);
+			POPUP_CONTEXT = null;
+		}
 	}
 	
 	window.lastFocus = performance.now();
 });
 
+// create "Popup this tab" context menu
+function createPopupContext() {
+	return contextMenus.create({
+		title: "Popup this tab",
+		onclick(info, tab) {
+			createPopup(tab);
+		}
+	});
+}
+
 // create "Merge popup" context menu
-function createContextMenu() {
+function createMergeContext() {
 	return contextMenus.create({
 		title: "Merge popup",
 		onclick(info, tab) {
