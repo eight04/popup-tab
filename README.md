@@ -19,6 +19,10 @@ Usage
 Changelog
 ---------
 
+* 0.1.1 (Mar 18, 2017)
+
+	- Compat with Firefox < 53. Tab menu is only on Firefox 53+.
+
 * 0.1.0 (Mar 17, 2017)
 
     - First release.
