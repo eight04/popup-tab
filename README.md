@@ -13,7 +13,8 @@ Features
 Usage
 -----
 
-* Right-click the tab bar, select "Popup this tab".
+* Right-click the tab bar, select "Popup this tab". (Firefox 53+)
+* Right-click on the page, select "Popup this tab". (Firefox < 53)
 * In popup window, right-click on the page, select "Merge popup".
 
 Changelog
@@ -21,7 +22,7 @@ Changelog
 
 * 0.1.1 (Mar 18, 2017)
 
-	- Compat with Firefox < 53. Tab menu is only on Firefox 53+.
+	- Compat with Firefox < 53. Tab menu is only available on Firefox 53+.
 
 * 0.1.0 (Mar 17, 2017)
 
