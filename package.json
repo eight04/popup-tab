@@ -17,5 +17,11 @@
     "npm-build-tools": "^2.2.5",
     "sync-version": "^1.0.0",
     "web-ext": "^1.8.1"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/eight04/popup-tab/issues",
+    "email": "eight04@gmail.com"
+  },
+  "repository": "eight04/popup-tab",
+  "private": true
 }
