@@ -114,13 +114,12 @@ const popups = (function () {
 		browser.windows.create({
 			tabId: tab.id,
 			left: 9999
-		}).then(() => {
-			// move tab to window
-			browser.tabs.move(tab.id, {
-				windowId: parent,
-				index
-			});
-			// FIXME: the temp window is automatically closed in Firefox 54, do we have to close it manually?
+		}).then(() => browser.tabs.move(tab.id, {
+			windowId: parent,
+			index
+		})).then(([tab]) => {
+			browser.windows.update(tab.windowId, {focused: true});
+			browser.tabs.update(tab.id, {active: true});
 		});
 	}
 	
