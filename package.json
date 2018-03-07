@@ -16,7 +16,7 @@
   "devDependencies": {
     "npm-build-tools": "^2.2.5",
     "sync-version": "^1.0.0",
-    "web-ext": "^2.2.2"
+    "web-ext": "^2.4.0"
   },
   "bugs": {
     "url": "https://github.com/eight04/popup-tab/issues",
