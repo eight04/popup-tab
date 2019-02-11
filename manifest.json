@@ -17,5 +17,10 @@
 		"gecko": {
 			"id": "popup-tab@eight04.blogspot.com"
 		}
-	}
+	},
+  "commands": {
+    "popupTab": {
+      "description": "Popup tab/merge popup"
+    }
+  } 
 }
