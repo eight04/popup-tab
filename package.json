@@ -6,7 +6,7 @@
   "author": "eight04 <eight04@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "test": "eslint **/*.js && web-ext lint",
+    "test": "eslint \"**/*.js\" && web-ext lint",
     "start": "web-ext run",
     "preversion": "npm test",
     "version": "sync-version manifest.json && git add .",
@@ -15,7 +15,7 @@
   },
   "devDependencies": {
     "sync-version": "^1.0.0",
-    "web-ext": "^2.9.1"
+    "web-ext": "^2.9.3"
   },
   "bugs": {
     "url": "https://github.com/eight04/popup-tab/issues",

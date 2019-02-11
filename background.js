@@ -218,3 +218,18 @@ const menus = buildContextMenu([{
 
 windows.onFocusChange(menus.update);
 windows.ready(menus.update);
+browser.commands.onCommand.addListener(command => {
+  if (command === "popupTab") {
+    browser.tabs.query({currentWindow: true, active: true})
+      .then(tabs => {
+        if (!tabs.length) {
+          return;
+        }
+        if (windows.getLastFocused().type === "popup") {
+          popups.merge(tabs[0]);
+        } else {
+          popups.create(tabs[0]);
+        }
+      });
+  }
+});
