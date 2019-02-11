@@ -1,6 +1,6 @@
 {
 	"manifest_version": 2,
-	"version": "0.1.1",
+	"version": "0.2.0",
 	"name": "Popup Tab",
 	"description": "Convert a tab into a popup and vice versa",
 	"author": "eight",
