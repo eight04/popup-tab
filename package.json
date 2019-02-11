@@ -10,7 +10,7 @@
     "start": "web-ext run",
     "preversion": "npm test",
     "version": "sync-version manifest.json && git add .",
-    "build": "web-ext build --ignore-files **/*.log",
+    "build": "web-ext build",
     "postversion": "npm run build && git push --follow-tags"
   },
   "devDependencies": {
@@ -22,5 +22,11 @@
     "email": "eight04@gmail.com"
   },
   "repository": "eight04/popup-tab",
-  "private": true
+  "private": true,
+  "webExt": {
+    "ignoreFiles": ["package.json", "package-lock.json"],
+    "build": {
+      "overwriteDest": true
+    }
+  }
 }
