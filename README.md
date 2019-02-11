@@ -20,6 +20,11 @@ Usage
 Changelog
 ---------
 
+* 0.2.0 (Feb 11, 2019)
+
+  - Fix: focus the tab after the tab is merged.
+  - Add: popup tab/merge popup hotkey. Note that the hotkey is only configurable on Firefox 66+.
+
 * 0.1.1 (Mar 18, 2017)
 
 	- Compat with Firefox < 53. Tab menu is only available on Firefox 53+.
