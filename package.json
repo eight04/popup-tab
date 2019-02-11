@@ -15,7 +15,7 @@
   },
   "devDependencies": {
     "sync-version": "^1.0.0",
-    "web-ext": "^2.9.1"
+    "web-ext": "^2.9.3"
   },
   "bugs": {
     "url": "https://github.com/eight04/popup-tab/issues",
