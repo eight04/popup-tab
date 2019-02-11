@@ -24,7 +24,7 @@
   "repository": "eight04/popup-tab",
   "private": true,
   "webExt": {
-    "ignoreFiles": ["package.json", "package-lock.json"],
+    "ignoreFiles": ["package*.json"],
     "build": {
       "overwriteDest": true
     }
