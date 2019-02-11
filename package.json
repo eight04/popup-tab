@@ -6,7 +6,7 @@
   "author": "eight04 <eight04@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "test": "eslint **/*.js && web-ext lint",
+    "test": "eslint \"**/*.js\" && web-ext lint",
     "start": "web-ext run",
     "preversion": "npm test",
     "version": "sync-version manifest.json && git add .",
