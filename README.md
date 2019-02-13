@@ -16,6 +16,13 @@ Usage
 * Right-click the tab bar, select "Popup this tab". (Firefox 53+)
 * Right-click on the page, select "Popup this tab". (Firefox < 53)
 * In popup window, right-click on the page, select "Merge popup".
+* From Firefox >= 66, you can set a hotkey that will popup/merge the current tab.
+  ![screenshot](https://i.imgur.com/jBsrY9O.png)
+  
+Installation
+------------
+
+https://addons.mozilla.org/firefox/addon/popup-tab/
 
 Changelog
 ---------
