@@ -15,7 +15,7 @@
   },
   "devDependencies": {
     "sync-version": "^1.0.0",
-    "web-ext": "^2.9.3"
+    "web-ext": "^3.0.0"
   },
   "bugs": {
     "url": "https://github.com/eight04/popup-tab/issues",
@@ -24,7 +24,9 @@
   "repository": "eight04/popup-tab",
   "private": true,
   "webExt": {
-    "ignoreFiles": ["package*.json"],
+    "ignoreFiles": [
+      "package*.json"
+    ],
     "build": {
       "overwriteDest": true
     }
