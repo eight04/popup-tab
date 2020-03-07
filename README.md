@@ -30,6 +30,11 @@ https://addons.mozilla.org/firefox/addon/popup-tab/
 Changelog
 ---------
 
+* 0.3.0 (Mar 7, 2020)
+
+  - **Refactor: source tree.**
+  - Add: store popup window size.
+
 * 0.2.0 (Feb 11, 2019)
 
   - Fix: focus the tab after the tab is merged.
