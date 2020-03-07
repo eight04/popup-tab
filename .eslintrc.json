@@ -1,6 +1,7 @@
 {
 	"parserOptions": {
-		"ecmaVersion": 8
+		"ecmaVersion": 2019,
+    "sourceType": "module"
 	},
 	"env": {
 		"es6": true,
@@ -9,7 +10,7 @@
 	"rules": {
 		"no-use-before-define": [2, "nofunc"],
 		"semi": [2, "always"],
-		"no-console": ["error", {"allow": ["error"]}]
+		"no-console": ["error", {"allow": ["error", "warn"]}]
 	},
 	"extends": [
 		"eslint:recommended"
