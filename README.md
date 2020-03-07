@@ -1,6 +1,8 @@
 Popup Tab
 =========
 
+[![Build Status](https://travis-ci.com/eight04/popup-tab.svg?branch=master)](https://travis-ci.com/eight04/popup-tab)
+
 A Firefox addon, easily convert a tab into a popup and vice versa.
 
 Features
@@ -9,6 +11,7 @@ Features
 * Convert a tab into a popup window.
 * Convert the popup window back to a tab, and insert back to original window.
 * The tab is actually "moved" between the normal window and the popup window, so you don't have to reload the page.
+* The popup window size is recorded based on the domain.
 
 Usage
 -----
