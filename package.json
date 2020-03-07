@@ -11,7 +11,7 @@
     "preversion": "npm test",
     "version": "npm run build && git add .",
     "build": "sync-version src/static/manifest.json && rollup -c",
-    "postversion": "web-ext build && git push --follow-tags"
+    "postversion": "web-ext build && git archive -o web-ext-artifacts/source.zip HEAD && git push --follow-tags"
   },
   "devDependencies": {
     "event-lite": "^0.1.2",
