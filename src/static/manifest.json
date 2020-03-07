@@ -6,12 +6,12 @@
 	"author": "eight",
 	"homepage_url": "https://github.com/eight04/popup-tab",
 	"permissions": [
-		"contextMenus"
+		"contextMenus",
+    "activeTab",
+    "storage"
 	],
 	"background": {
-		"scripts": [
-			"background.js"
-		]
+		"scripts": []
 	},
 	"applications": {
 		"gecko": {
