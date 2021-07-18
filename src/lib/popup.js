@@ -58,13 +58,16 @@ async function trackPopupSize() {
 }
 
 async function createWindow(options) {
-  Object.assign(options, getPopupSize(options.url));
+  Object.assign(options, await getPopupSize(options.url));
+  
+  const origin = getOrigin(options.url);
   if (options.tabId) {
     delete options.url;
   }
+  
   options.type = "popup";
   const info = await browser.windows.create(options);
-  info.origin = getOrigin(options.url);
+  info.origin = origin;
   popups.set(info.id, info);
   return info;
 }
@@ -91,16 +94,13 @@ export async function createPopupFromURL(parentTab, url) {
   }
 }
 
-async function moveTab(tabId, windowId, index) {
+async function moveTab(tabId, windowId, index = -1) {
   // using windows.create allows us to move popup tab to a normal window
   await browser.windows.create({
     tabId,
     left: 9999
   });
-  const options = {windowId};
-  if (index != null) {
-    options.index = index;
-  }
+  const options = {windowId, index};
   const [tab] = await browser.tabs.move(tabId, options);
   await Promise.all([
     browser.windows.update(tab.windowId, {focused: true}),
@@ -113,6 +113,7 @@ export async function mergePopup(tab) {
   try {
     await moveTab(tab.id, info.parent, info.index);
   } catch (err) {
+    console.warn(err);
     const win = getLastFocusedWindow();
     if (win) {
       await moveTab(tab.id, win.id);
