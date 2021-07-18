@@ -1,7 +1,7 @@
 /* eslint-env webextensions */
 import createMenus from "webext-menus";
 
-import {createPopup, createPopupFromURL, mergePopup} from "./lib/popup.js";
+import {createPopup, createPopupFromURL, mergePopup, savePopupSize} from "./lib/popup.js";
 import {isCurrentWindowPopup, events as windowEvents} from "./lib/window-manager.js";
 
 function isTabContextSupported() {
@@ -20,27 +20,39 @@ function isTabContextSupported() {
 
 const SUPPORT_TAB_CONTEXT = isTabContextSupported();
 
-const menus = createMenus([{
-	title: "Popup This Tab",
-	contexts: SUPPORT_TAB_CONTEXT ? ["tab"] : ["page"],
-	oncontext: () => SUPPORT_TAB_CONTEXT ? true : !isCurrentWindowPopup(),
-	onclick(info, tab) {
-		createPopup(tab);
-	}
-}, {
-	title: "Open Link in Popup",
-	contexts: ["link"],
-	onclick(info, tab) {
-		createPopupFromURL(tab, info.linkUrl);
-	}
-}, {
-	title: "Merge Popup",
-	contexts: ["page"],
-	oncontext: isCurrentWindowPopup,
-	onclick(info, tab) {
-		mergePopup(tab);
-	}
-}]);
+const menus = createMenus([
+  {
+    title: "Popup This Tab",
+    contexts: SUPPORT_TAB_CONTEXT ? ["tab"] : ["page"],
+    oncontext: () => SUPPORT_TAB_CONTEXT ? true : !isCurrentWindowPopup(),
+    onclick(info, tab) {
+      createPopup(tab);
+    }
+  },
+  {
+    title: "Open Link in Popup",
+    contexts: ["link"],
+    onclick(info, tab) {
+      createPopupFromURL(tab, info.linkUrl);
+    }
+  },
+  {
+    title: "Merge Popup",
+    contexts: ["page"],
+    oncontext: isCurrentWindowPopup,
+    onclick(info, tab) {
+      mergePopup(tab);
+    }
+  },
+  {
+    title: "Save window position",
+    contexts: ["page"],
+    oncontext: isCurrentWindowPopup,
+    onclick(info, tab) {
+      savePopupSize(tab).catch(console.error);
+    }
+  }
+]);
 
 windowEvents.on("focusChanged", menus.update);
 windowEvents.on("ready", menus.update);

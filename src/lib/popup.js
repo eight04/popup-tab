@@ -9,6 +9,33 @@ browser.windows.onRemoved.addListener(windowId => {
 
 trackPopupSize();
 
+export async function savePopupSize(tab) {
+  const u = getUrlWithoutSearch(tab.url);
+  const {width, height} = await browser.windows.get(tab.windowId);
+  await browser.storage.local.set({
+    [`popup/size/${u}`]: {width, height}
+  });
+}
+
+async function getPopupSize(url) {
+  const keys = [
+    getUrlWithoutSearch(url),
+    getOrigin(url)
+  ].map(u => `popup/size/${u}`);
+  const obj = await browser.storage.local.get(keys);
+  for (const key of keys) {
+    if (obj[key]) {
+      return obj[key];
+    }
+  }
+  return null;
+}
+
+function getUrlWithoutSearch(url) {
+  const match = url.match(/^[^?#]+/);
+  return match ? match[0] : url;
+}
+
 function getOrigin(url) {
   const match = url.match(/^[^:]+:(\/{2,3})?[^/]+/);
   if (!match) {
@@ -31,26 +58,13 @@ async function trackPopupSize() {
 }
 
 async function createWindow(options) {
-  let origin;
-  if (options.url) {
-    origin = getOrigin(options.url);
-    if (origin) {
-      const key = `popup/size/${origin}`;
-      const result = await browser.storage.local.get(key);
-      if (result[key]) {
-        ({
-          width: options.width,
-          height: options.height
-        } = result[key]);
-      }
-    }
-  }
+  Object.assign(options, getPopupSize(options.url));
   if (options.tabId) {
     delete options.url;
   }
   options.type = "popup";
   const info = await browser.windows.create(options);
-  info.origin = origin;
+  info.origin = getOrigin(options.url);
   popups.set(info.id, info);
   return info;
 }
