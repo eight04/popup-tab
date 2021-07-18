@@ -45,7 +45,7 @@ const menus = createMenus([
     }
   },
   {
-    title: "Save window position",
+    title: "Remember window size",
     contexts: ["page"],
     oncontext: isCurrentWindowPopup,
     onclick(info, tab) {
