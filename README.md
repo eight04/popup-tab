@@ -11,7 +11,7 @@ Features
 * Convert a tab into a popup window.
 * Convert the popup window back to a tab, and insert back to original window.
 * The tab is actually "moved" between the normal window and the popup window, so you don't have to reload the page.
-* The popup window size is recorded based on the domain.
+* The popup window size is maintained based on the domain. You can also make it remember the window size of a specific URL.
 
 Usage
 -----
@@ -29,6 +29,10 @@ https://addons.mozilla.org/firefox/addon/popup-tab/
 
 Changelog
 ---------
+
+* 0.3.1 (Jul 18, 2021)
+
+  - Add: store popup window size according to the entire URL (without search params, hash).
 
 * 0.3.0 (Mar 7, 2020)
 
