@@ -1,7 +1,7 @@
 {
   "title": "Popup Tab",
   "name": "popup-tab",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Popup current tab",
   "author": "eight04 <eight04@gmail.com>",
   "license": "MIT",
